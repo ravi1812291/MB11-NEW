@@ -19,6 +19,8 @@ public class MatchService {
 	@Autowired
 	private com.mb11.application.payload.admin.sport.Match adminMatch;
 	
+	private String link="http://localhost:8080/cricapi/matches";
+	
 	public List<com.mb11.application.payload.admin.sport.Match> getAllMatches()
 	{
 		List<Match> match=mr.findAll();
@@ -28,7 +30,7 @@ public class MatchService {
 		{
 			adminMatch.setObjId(m.getID());
 			adminMatch.setName(m.getMatchname());
-			adminMatch.setLink("");
+			adminMatch.setLink(link);
 			adminMatch.setMatchId(String.valueOf(m.getMatchid()));
 			adminMatch.setSeriesIdURL("");
 	
@@ -47,7 +49,7 @@ public class MatchService {
 		Match m=mr.findByMatchid(id);
 		adminMatch.setObjId(m.getID());
 		adminMatch.setName(m.getMatchname());
-		adminMatch.setLink("");
+		adminMatch.setLink(link+"/"+id);
 		adminMatch.setMatchId(String.valueOf(m.getMatchid()));
 		adminMatch.setSeriesIdURL("");
 		

@@ -5,12 +5,14 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mb11.application.controller.cricapidata.SeriesNotFoundException;
 import com.mb11.application.dao.cricapidata.SeriesRepository;
+import com.mb11.application.model.cricapidata.MTeam;
 import com.mb11.application.model.cricapidata.Series;
 
 
@@ -20,12 +22,15 @@ public class SeriesService {
 	@Autowired
 	private SeriesRepository sr;
 	
+	private String link="http://localhost:8080/cricapi/series";
+	
 	@Autowired
 	private com.mb11.application.payload.admin.sport.Series adminSeries;
 	
 	public List<com.mb11.application.payload.admin.sport.Series> getAllSeries()
 	{
 		List<Series> st=sr.findAll();
+		
 		List<com.mb11.application.payload.admin.sport.Series> asl=new ArrayList<>();
 		
 		
@@ -38,11 +43,14 @@ public class SeriesService {
 			adminSeries.setStartdate(s.getStartdate());
 			adminSeries.setEnddate(s.getEnddate());
 			adminSeries.setTotalmatch(s.getTotalmatch());
-			adminSeries.setLink("");
-			adminSeries.setTeamlistLink("");
+			adminSeries.setLink(link);
+			
+			adminSeries.setTeamlistLink(link+"/");
+			
 			adminSeries.setMatchlistLink("");
 			
 			asl.add(adminSeries);
+			
 		}
 		
 		
@@ -63,7 +71,7 @@ public class SeriesService {
 			adminSeries.setStartdate(s.getStartdate());
 			adminSeries.setEnddate(s.getEnddate());
 			adminSeries.setTotalmatch(s.getTotalmatch());
-			adminSeries.setLink("");
+			adminSeries.setLink(link+"/"+id);
 			adminSeries.setTeamlistLink("");
 			adminSeries.setMatchlistLink("");
 			
@@ -84,7 +92,7 @@ List<com.mb11.application.payload.admin.sport.Series> asl=new ArrayList<>();
 			adminSeries.setStartdate(s.getStartdate());
 			adminSeries.setEnddate(s.getEnddate());
 			adminSeries.setTotalmatch(s.getTotalmatch());
-			adminSeries.setLink("");
+			adminSeries.setLink(link+"/"+startDate+"/"+endDate);
 			adminSeries.setTeamlistLink("");
 			adminSeries.setMatchlistLink("");
 			

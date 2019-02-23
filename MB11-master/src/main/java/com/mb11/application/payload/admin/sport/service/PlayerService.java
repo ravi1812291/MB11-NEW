@@ -19,6 +19,8 @@ public class PlayerService {
 	@Autowired
 	private com.mb11.application.payload.admin.sport.Player adminPlayer;
 	
+	private String link="http://localhost:8080/cricapi/palyers";
+	
 	public List<com.mb11.application.payload.admin.sport.Player> getAllPlayers()
 	{
 		List<TeamPlayers> teamPlayers=tmr.findAll();
@@ -31,7 +33,7 @@ public class PlayerService {
 			adminPlayer.setSeriesId("");
 			adminPlayer.setTeamId("");
 			adminPlayer.setName(tp.getFirstname()+" "+tp.getLastname());
-			adminPlayer.setLink("");
+			adminPlayer.setLink(link);
 			adminPlayer.setMatchId("");
 			
 			am.add(adminPlayer);
@@ -51,7 +53,7 @@ public class PlayerService {
 			adminPlayer.setSeriesId("");
 			adminPlayer.setTeamId("");
 			adminPlayer.setName(tp.getFirstname()+" "+tp.getLastname());
-			adminPlayer.setLink("");
+			adminPlayer.setLink(link+"/"+id);
 			adminPlayer.setMatchId("");
 			
 		

@@ -20,6 +20,8 @@ public class TeamService {
 	@Autowired
 	private com.mb11.application.payload.admin.sport.Team adminTeam;
 	
+	private String link="http://localhost:8080/cricapi/teams";
+	
 	public List<com.mb11.application.payload.admin.sport.Team> getAllTeams()
 	{
 		List<MTeam> mTeam=mr.findAll();
@@ -29,7 +31,7 @@ public class TeamService {
 		{
 			adminTeam.setObjId(m.getID());
 			adminTeam.setName(m.getTeamname());
-			adminTeam.setLink("");
+			adminTeam.setLink(link);
 			adminTeam.setMatchIdURL("");
 			adminTeam.setSeriesIdURL("");
 			
@@ -48,7 +50,7 @@ public class TeamService {
 		
 			adminTeam.setObjId(mTeam.getID());
 			adminTeam.setName(mTeam.getTeamname());
-			adminTeam.setLink("");
+			adminTeam.setLink(link+"/"+id);
 			adminTeam.setMatchIdURL("");
 			adminTeam.setSeriesIdURL("");
 			
